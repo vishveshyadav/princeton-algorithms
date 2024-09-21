@@ -44,7 +44,7 @@ public class HeapSort {
     }
 
     private void swim(int[] in, int n) {
-        while ((n - 1) / 2 >= 0 && in[n] > in[(n - 1) / 2]) {
+        while (n > 0 && in[n] > in[(n - 1) / 2]) {
             int temp = in[n];
             in[n] = in[(n - 1) / 2];
             in[(n - 1) / 2] = temp;
@@ -54,16 +54,12 @@ public class HeapSort {
 
     private void sink(int[] in, int k, int n) {
 
-        while (2 * k < n) {
-            int index = 2 * k;
-            int maxChild = k;
-            if (index + 1 <= n && in[index + 1] > in[index]) {
-                maxChild = index + 1;
-            }
+        while (2 * k + 1 < n) {
+            int maxChild = 2 * k + 1;
             if (maxChild + 1 <= n && in[maxChild + 1] > in[maxChild]) {
                 maxChild++;
             }
-            if (maxChild == k) {
+            if (in[maxChild] <= in[k]) {
                 break;
             }
             int temp = in[maxChild];
