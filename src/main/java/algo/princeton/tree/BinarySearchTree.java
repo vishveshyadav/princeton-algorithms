@@ -165,6 +165,28 @@ public class BinarySearchTree {
         root = delete(key, root);
     }
 
+    private void rangeSearch(Node root, int low, int high) {
+
+        if (root == null) {
+            return;
+        }
+
+        if (root.key > low) {
+            rangeSearch(root.left, low, high);
+        }
+        if (root.key >= low && root.key <= high) {
+            System.out.print(root.key + "\t");
+        }
+        if(root.key < high){
+            rangeSearch(root.right, low, high);
+        }
+    }
+
+
+    public void rangeSearch(int low, int high) {
+        rangeSearch(root, low, high);
+    }
+
     public static void main(String[] args) {
         BinarySearchTree bst = new BinarySearchTree();
         bst.add(9, 9);
@@ -174,5 +196,6 @@ public class BinarySearchTree {
         bst.add(10, 10);
         bst.iterate();
         bst.delete(5);
+        bst.rangeSearch(1, 5);
     }
 }
