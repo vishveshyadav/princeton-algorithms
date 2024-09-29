@@ -38,11 +38,10 @@ public class SuccessorWithDelete {
     }
 
     public int find(int x) {
-        int root = x;
-        while (id[root] != root){
-            root = find(id[root]);
+        while (id[x] != x){
+            x = find(id[x]);
         }
-        return root;
+        return x;
     }
 
     public static void main(String[] args) {
@@ -56,5 +55,6 @@ public class SuccessorWithDelete {
         ss.remove(4);
         System.out.println(ss.find(2));
         System.out.println(ss.find(3));
+        ss.remove(3);
     }
 }
